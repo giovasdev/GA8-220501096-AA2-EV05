@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blockchain: Confianza Digital Descentralizada</title>
+  <meta name="description" content="Landing page informativa y moderna sobre tecnología blockchain: fundamentos, objetivos, criptografía, hash, bloques, casos de uso, criptomonedas y minería." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --bg-2: #0e1420;
+      --card: #121a29;
+      --primary: #6ee7ff;
+      --primary-600: #3dcdf0;
+      --accent: #8b5cf6;
+      --text: #e6edf7;
+      --muted: #9fb2cc;
+      --success: #50fa7b;
+      --warning: #ffb86c;
+      --danger: #ff6b6b;
+      --shadow: 0 20px 50px rgba(0,0,0,.4);
+      --radius: 14px;
+      --radius-sm: 10px;
+      --radius-lg: 22px;
+      --gradient: radial-gradient(1200px 600px at 20% -10%, rgba(110,231,255,.15), transparent 60%),
+                  radial-gradient(1200px 600px at 80% 110%, rgba(139,92,246,.12), transparent 60%),
+                  linear-gradient(180deg, #0b0f17, #0a0e16);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text); background: var(--gradient); line-height: 1.6; -webkit-font-smoothing: antialiased;
+      html {scroll-behavior: smooth;}
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1200px, 92%); margin-inline: auto; }
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50; backdrop-filter: blur(10px);
+      background: rgba(11,15,23,.5); border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between; padding: 14px 0;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: .2px; }
+    .logo {
+      width: 36px; height: 36px; border-radius: 10px; background:
+      conic-gradient(from 180deg, var(--primary), var(--accent), var(--primary));
+      box-shadow: 0 8px 24px rgba(110,231,255,.25), inset 0 0 24px rgba(255,255,255,.1);
+    }
+    .nav a.link { color: var(--muted); margin-left: 20px; font-weight: 600; }
+    .nav a.link:hover { color: var(--text); }
+    .cta {
+      padding: 10px 16px; background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: #0a0e16; border-radius: 999px; font-weight: 800; box-shadow: 0 10px 30px rgba(110,231,255,.25);
+      transform: translateZ(0);
+    }
+    .cta:hover { filter: brightness(1.05); transform: translateY(-1px); }
+    /* Hero */
+    .hero {
+      position: relative; padding: 80px 0 40px; overflow: hidden;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
+      background: rgba(110,231,255,.1); color: var(--primary); font-weight: 700; font-size: 12px; letter-spacing: .6px;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: clamp(34px, 5vw, 58px); margin: 16px 0 10px; line-height: 1.08; letter-spacing: -0.5px;
+    }
+    .subtitle { color: var(--muted); font-size: clamp(16px, 2.2vw, 18px); }
+    .hero-actions { display: flex; gap: 14px; margin-top: 26px; flex-wrap: wrap; }
+    .btn {
+      padding: 12px 18px; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; font-weight: 700; color: var(--text);
+      background: rgba(255,255,255,.04);
+    }
+    .btn:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.2); }
+    .btn.primary {
+      background: linear-gradient(90deg, var(--primary), var(--accent)); color: #0a0e16; border: none;
+      box-shadow: 0 10px 30px rgba(139,92,246,.25);
+    }
+    .badge-row { display: flex; gap: 14px; margin-top: 18px; flex-wrap: wrap; }
+    .badge {
+      padding: 8px 12px; border-radius: 999px; background: rgba(139,92,246,.14);
+      color: #cbb6ff; border: 1px solid rgba(139,92,246,.35); font-weight: 700; font-size: 12px;
+    }
+    .hero-visual {
+      position: relative; isolation: isolate; padding: 16px;
+    }
+    .glass {
+      border-radius: var(--radius-lg); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.12); box-shadow: var(--shadow); padding: 18px;
+    }
+    .chain {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 6px;
+    }
+    .block {
+      background: linear-gradient(180deg, #0f1624, #0d1320); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px; padding: 14px; position: relative; overflow: hidden;
+    }
+    .block::after {
+      content: ""; position: absolute; inset: 0; background: radial-gradient(300px 120px at 80% -10%, rgba(110,231,255,.1), transparent);
+      pointer-events: none;
+    }
+    .block h4 { margin: 0 0 6px; font-size: 14px; color: var(--primary); }
+    .kv { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; color: var(--muted); }
+    .link-arrow { display: inline-flex; align-items: center; gap: 8px; color: var(--primary); font-weight: 700; }
+    /* Sections */
+    section { padding: 64px 0; }
+    .section-title {
+      font-size: clamp(26px, 3.5vw, 34px); margin: 0 0 10px; letter-spacing: -.2px;
+    }
+    .section-lead { color: var(--muted); margin-bottom: 26px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .card {
+      background: var(--card); border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius);
+      padding: 20px; box-shadow: var(--shadow); transition: transform .2s ease, border-color .2s ease;
+    }
+    .card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.18); }
+    .card h3 { margin: 0 0 8px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); color: var(--text); font-weight: 700; font-size: 12px;
+    }
+    /* Diagram */
+    .diagram {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      white-space: pre; background: #0a0f18; border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius); padding: 16px; color: #c8d5ea; overflow-x: auto;
+    }
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255,255,255,.08); background: #0a0e16; padding: 28px 0; color: var(--muted);
+    }
+    .footer-grid { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px; }
+    .small { font-size: 12px; }
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .chain { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    /* Subtle animations */
+    .fade-in { opacity: 0; transform: translateY(8px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .pulse {
+      animation: pulse 2.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 rgba(110,231,255,0.0); }
+      50% { box-shadow: 0 0 0 12px rgba(110,231,255,0.08); }
+    }
+  </style>
+</head>
+<body>
+    <a id="top"></a>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo"></div>
+        <span>Blockchain</span>
+      </div>
+      <div>
+        <a class="link" href="#top">Inicio</a>
+        <a class="link" href="#que-es">Tecnología</a>
+        <a class="link" href="#fundamentos">Fundamentos</a>
+        <a class="link" href="#casos">Casos de uso</a>
+        <a class="link" href="#mineria">Minería</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Premisa</span>
+        <h1>Blockchain es la arquitectura idónea para la confianza digital sin intermediarios</h1>
+        <p class="subtitle">Descentralización, inmutabilidad y verificación criptográfica habilitan modelos más transparentes, auditables y resilientes. Conoce sus objetivos, antecedentes, fundamentos y aplicaciones reales.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#que-es">Explorar fundamentos</a>
+          <a class="btn" href="#diagrama">Ver red en acción</a>
+        </div>
+        <div class="badge-row">
+          <span class="badge">Inmutabilidad</span>
+          <span class="badge">Descentralización</span>
+          <span class="badge">Verificabilidad</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="glass">
+          <div class="pill pulse">Libro mayor distribuido</div>
+          <div class="chain">
+            <div class="block fade-in">
+              <h4>Bloque N-1</h4>
+              <div class="kv">prev: 0000ab9f...</div>
+              <div class="kv">Merkle: 12f3c9...</div>
+            </div>
+            <div class="block fade-in">
+              <h4>Bloque N</h4>
+              <div class="kv">prev: 3c91d0a2...</div>
+              <div class="kv">Merkle: a7b4e1...</div>
+            </div>
+            <div class="block fade-in">
+              <h4>Bloque N+1</h4>
+              <div class="kv">prev: 7a11ff2b...</div>
+              <div class="kv">Merkle: 9c8d77...</div>
+            </div>
+          </div>
+          <div style="margin-top:12px;">
+            <a class="link-arrow" href="#fundamentos">Aprende cómo se encadenan los bloques →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="que-es" class="container">
+      <h2 class="section-title fade-in">¿Qué es la tecnología blockchain y cuál es su objetivo?</h2>
+      <p class="section-lead fade-in">Blockchain es un registro distribuido, sincronizado entre múltiples nodos, que almacena eventos en bloques enlazados criptográficamente. Su objetivo es permitir acuerdos sobre un estado compartido entre partes que no confían entre sí, sin autoridad central, evitando doble gasto, censura arbitraria y opacidad.</p>
+      <div class="grid-3">
+        <div class="card fade-in">
+          <h3>Integridad compartida</h3>
+          <p>Todos ven la misma verdad verificable, con auditoría abierta y trazabilidad de cada cambio.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Confianza sin intermediarios</h3>
+          <p>Las reglas están en el protocolo y se verifican con criptografía y consenso entre pares.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Liquidación eficiente</h3>
+          <p>Reducción de conciliaciones entre entidades y liquidaciones casi en tiempo real.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="antecedentes" class="container">
+      <h2 class="section-title fade-in">Antecedentes clave</h2>
+      <p class="section-lead fade-in">Décadas de criptografía y sistemas distribuidos confluyen en blockchain: firmas digitales, funciones hash, árboles de Merkle, time-stamping, prueba de trabajo y consenso tolerante a fallas bizantinas.</p>
+      <div class="grid-3">
+        <div class="card fade-in">
+          <h3>Criptografía de clave pública</h3>
+          <p>Autenticidad y no repudio mediante firmas digitales verificables con una clave pública.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Hashcash y PoW</h3>
+          <p>Trabajo computacional como mecanismo de escasez y resistencia a spam, antecesor del consenso PoW.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Problema bizantino</h3>
+          <p>Protocolos BFT y coordinación bajo adversarios inspiran diseños de consenso en redes abiertas.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="fundamentos" class="container">
+      <h2 class="section-title fade-in">Fundamentos técnicos</h2>
+      <div class="grid-3">
+        <div class="card fade-in">
+          <h3>Criptografía</h3>
+          <p>Firmas digitales autorizan transacciones. Pruebas de conocimiento cero y derivación de claves elevan privacidad y seguridad.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Funciones hash</h3>
+          <p>Huella digital inmutable de datos con resistencia a preimagen y colisiones; base de los árboles de Merkle.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Bloques encadenados</h3>
+          <p>Cada bloque contiene el hash del anterior, una marca temporal y la raíz de Merkle de sus transacciones.</p>
+        </div>
+      </div>
+      <div class="grid-2" style="margin-top: 20px;">
+        <div class="card fade-in">
+          <h3>Encadenamiento</h3>
+          <p>Modificar un bloque histórico alteraría su hash e invalidaría todos los siguientes. Las confirmaciones aumentan la inmutabilidad.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Consenso</h3>
+          <p>PoW ancla seguridad en cómputo; PoS en capital en stake con recompensas y penalizaciones (slashing).</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="diagrama" class="container">
+      <h2 class="section-title fade-in">Cómo se ve una red blockchain</h2>
+      <p class="section-lead fade-in">Las transacciones se propagan entre pares, los nodos validan y consensuan el próximo bloque, y la cadena se replica globalmente.</p>
+      <div class="diagram fade-in" id="diagram">
+[Usuario A] --tx--> [Nodo 1] === gossip === [Nodo 2] === gossip === [Nodo 3]
+                              |                                 |
+                              v                                 v
+                         [Mempool]                         [Mempool]
+                              |                                 |
+                        (Consenso)                          (Consenso)
+                              |                                 |
+                              v                                 v
+          [Bloque N-1] <-hash- [Bloque N] <-hash- [Bloque N+1] <-hash- ...
+                 ^                         ^
+                 |                         |
+            raiz de Merkle            raiz de Merkle
+                 ^                         ^
+           tx1 tx2 tx3 ...           tx1 tx2 tx3 ...
+      </div>
+      <div class="small" style="color:var(--muted); margin-top: 10px;">
+        Diagrama ASCII interactivo: pulsa “Animar” para ver la propagación de bloques.
+      </div>
+      <div style="margin-top: 12px;">
+        <button id="animateBtn" class="btn">Animar</button>
+      </div>
+    </section>
+
+    <section id="casos" class="container">
+      <h2 class="section-title fade-in">Productos y casos de uso</h2>
+      <p class="section-lead fade-in">Desde dinero nativo de Internet hasta trazabilidad y credenciales verificables, blockchain potencia nuevos modelos de coordinación y mercados programables.</p>
+      <div class="grid-3">
+        <div class="card fade-in">
+          <h3>Criptomonedas</h3>
+          <p>Activos digitales nativos de la cadena (BTC, ETH). Emisión programada y transferencias sin bancos.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Contratos inteligentes</h3>
+          <p>Programas que se ejecutan en la cadena, base de DeFi, stablecoins, DEX y mercados de derivados.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>NFT y trazabilidad</h3>
+          <p>Tokens únicos y seguimiento de cadenas de suministro para reducir fraude y mejorar auditoría.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Identidad autosoberana</h3>
+          <p>Credenciales verificables y control de atributos por parte del usuario con pruebas criptográficas.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Energía y sector público</h3>
+          <p>Mercados P2P de energía, registros de tierras y votación verificable con auditoría abierta.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Liquidación y conciliación</h3>
+          <p>Integridad compartida entre múltiples actores reduce costos y tiempos de liquidación.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cripto" class="container">
+      <h2 class="section-title fade-in">Criptomonedas: concepto esencial</h2>
+      <div class="grid-2">
+        <div class="card fade-in">
+          <h3>¿Qué es una criptomoneda?</h3>
+          <p>Un activo digital cuya propiedad y transferencia se registran en blockchain, con política monetaria definida por el protocolo. Puede ser nativa o emitida como token.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Estabilidad y diseño</h3>
+          <p>Desde monedas volátiles hasta stablecoins colateralizadas o algorítmicas que buscan minimizar la variación de precio.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="mineria" class="container">
+      <h2 class="section-title fade-in">Minería y validación</h2>
+      <div class="grid-2">
+        <div class="card fade-in">
+          <h3>Prueba de trabajo (PoW)</h3>
+          <p>Los mineros agrupan transacciones y buscan un nonce que cumpla la dificultad objetivo. El primero en hallar una solución válida propone el bloque y recibe recompensas.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Prueba de participación (PoS)</h3>
+          <p>Validadores bloquean capital para proponer y atestiguar bloques. Recompensas por buen comportamiento y slashing por acciones maliciosas o negligencia.</p>
+        </div>
+      </div>
+      <div class="card fade-in" style="margin-top: 20px;">
+        <h3>Conclusión</h3>
+        <p>Seleccionada y diseñada con criterio, la arquitectura blockchain ofrece un balance único entre seguridad, transparencia y apertura para sistemas económicos y cívicos.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>© <span id="year"></span> Texto Argumentativo sobre Blockchain</div>
+      <div class="small">By Andres Giovanny Vasco</div>
+    </div>
+  </footer>
+
+  <script>
+    // Año dinámico
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.18 });
+    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+    // Animación del diagrama ASCII
+    const frames = [
+`[Usuario A] --tx--> [Nodo 1] === gossip === [Nodo 2] === gossip === [Nodo 3]
+                              |                                 |
+                              v                                 v
+                         [Mempool]                         [Mempool]
+                              |                                 |
+                        (Consenso)                          (Consenso)
+                              |                                 |
+                              v                                 v
+          [Bloque N-1] <-hash- [Bloque N] <-hash- [Bloque N+1] <-hash- ...
+                 ^                         ^
+                 |                         |
+            raiz de Merkle            raiz de Merkle
+                 ^                         ^
+           tx1 tx2 tx3 ...           tx1 tx2 tx3 ...`,
+`[Usuario A] --tx--> [Nodo 1] === gossip === [Nodo 2] === gossip === [Nodo 3]
+          ••••••• tx propagándose •••••••
+                              |                                 |
+                              v                                 v
+                         [Mempool]                         [Mempool]
+                              |                                 |
+                        (Consenso)                          (Consenso)
+                              |                                 |
+                              v                                 v
+          [Bloque N-1] <-hash- [Bloque N] <-hash- [Bloque N+1] <-hash- ...
+                 ^                         ^
+                 |                         |
+            raiz de Merkle            raiz de Merkle
+                 ^                         ^
+           tx1 tx2 tx3 ...           tx1 tx2 tx3 ...`,
+`[Usuario A] --tx--> [Nodo 1] === gossip === [Nodo 2] === gossip === [Nodo 3]
+                              |                                 |
+                              v                                 v
+                         [Mempool]                         [Mempool]
+                              |                                 |
+                         (Construcción de bloque)          (Consenso)
+                              |                                 |
+                              v                                 v
+          [Bloque N-1] <-hash- [Bloque N] <-hash- [Bloque N+1] <-hash- ...
+                                 ^       dificultad ✓
+                                 |
+                           nonce encontrado`,
+`[Usuario A] --tx--> [Nodo 1] === gossip === [Nodo 2] === gossip === [Nodo 3]
+                              |                                 |
+                              v                                 v
+                         [Mempool]                         [Mempool]
+                              |                                 |
+                        (Consenso)                          (Consenso)
+                              |                                 |
+                              v                                 v
+          [Bloque N-1] <-hash- [Bloque N] <-hash- [Bloque N+1] <-hash- [Bloque N+2]
+                                                                 ^ nuevo bloque difundido`
+    ];
+    let animating = false, i = 0, timer = null;
+    const diagram = document.getElementById('diagram');
+    const animateBtn = document.getElementById('animateBtn');
+
+    function play() {
+      if (animating) return;
+      animating = true;
+      animateBtn.textContent = 'Detener';
+      timer = setInterval(() => {
+        i = (i + 1) % frames.length;
+        diagram.textContent = frames[i];
+      }, 1200);
+    }
+    function stop() {
+      animating = false;
+      animateBtn.textContent = 'Animar';
+      clearInterval(timer);
+      i = 0; diagram.textContent = frames[0];
+    }
+    animateBtn.addEventListener('click', () => animating ? stop() : play());
+
+    // Mejoras de accesibilidad en inputs
+    document.querySelectorAll('input, textarea').forEach(el => {
+      el.style.width = '100%';
+      el.style.padding = '10px 12px';
+      el.style.borderRadius = '10px';
+      el.style.border = '1px solid rgba(255,255,255,.12)';
+      el.style.background = 'rgba(255,255,255,.02)';
+      el.style.color = 'var(--text)';
+      el.addEventListener('focus', () => el.style.borderColor = 'rgba(110,231,255,.45)');
+      el.addEventListener('blur', () => el.style.borderColor = 'rgba(255,255,255,.12)');
+    });
+  </script>
+</body>
+</html>
